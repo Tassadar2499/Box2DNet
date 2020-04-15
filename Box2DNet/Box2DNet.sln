@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Box2DNet", "Box2DNet.csproj", "{59983683-ED1D-4258-ADD1-A00918048D75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Box2DNetTests", "..\Box2DNetTests\Box2DNetTests.csproj", "{4E447221-DC6B-4CE1-8859-D1DA820DE726}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59983683-ED1D-4258-ADD1-A00918048D75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59983683-ED1D-4258-ADD1-A00918048D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59983683-ED1D-4258-ADD1-A00918048D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59983683-ED1D-4258-ADD1-A00918048D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E447221-DC6B-4CE1-8859-D1DA820DE726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E447221-DC6B-4CE1-8859-D1DA820DE726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E447221-DC6B-4CE1-8859-D1DA820DE726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E447221-DC6B-4CE1-8859-D1DA820DE726}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {51EDEB09-503B-496D-8631-57DF8AD2D32F}
+	EndGlobalSection
+EndGlobal
