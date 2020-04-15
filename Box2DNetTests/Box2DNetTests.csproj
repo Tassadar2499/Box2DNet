@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <Reference Include="Box2DNet">
-      <HintPath>..\..\..\Azure\BadBadGuys\BadGuys\Box2D\Box2DNet\bin\Debug\netstandard2.0\Box2DNet.dll</HintPath>
+      <HintPath>..\Box2DNet\bin\Debug\netstandard2.0\Box2DNet.dll</HintPath>
     </Reference>
   </ItemGroup>
 
