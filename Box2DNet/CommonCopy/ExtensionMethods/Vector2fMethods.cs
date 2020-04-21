@@ -7,7 +7,7 @@ using _Consts = Box2DNet.CommonCopy.Consts.Consts;
 
 namespace Box2DNet.CommonCopy.ExtensionMethods
 {
-	public static class Vector2fExtensions
+	public static class Vector2fMethods
 	{
 		public static Vector3f ToVector3f(this Vector2f vector)
 			=> new Vector3f(vector.X, vector.Y, 0.0f);

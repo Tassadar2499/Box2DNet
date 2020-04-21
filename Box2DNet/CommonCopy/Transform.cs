@@ -1,25 +1,25 @@
 ﻿using Box2DNet.CommonCopy.ExtensionMethods;
 using SFML.System;
-using System;
-using System.Collections.Generic;
 using System.Numerics;
-using System.Text;
 
 namespace Box2DNet.CommonCopy
 {
 	/// <summary>
-	/// A Transform contains translation and rotation.
-	/// It is used to represent the position and orientation of rigid frames.
+	/// Трансформация - содержит перевод и вращение.
+	/// Используется для представления положения и ориентации жестких фреймов.
 	/// </summary>
-	public struct Transform
+	public readonly struct Transform
 	{
-		public Vector2f Position;
-		public Quaternion Rotation;
+		/// <summary>
+		/// Текущая поиция
+		/// </summary>
+		public readonly Vector2f Position;
+		/// <summary>
+		/// Матрица вращения
+		/// </summary>
+		public readonly Quaternion Rotation;
 		public static readonly Transform Identity = new Transform(new Vector2f(0, 0), Quaternion.Identity);
 
-		/// <summary>
-		/// Initialize using a position vector and a rotation matrix.
-		/// </summary>
 		public Transform(Vector2f position, Quaternion rotation)
 		{
 			Position = position;
