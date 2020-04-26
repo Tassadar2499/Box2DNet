@@ -45,28 +45,46 @@ namespace Box2DNet.CommonCopy
 		//TO DO: Тут нужно внимательно все проверить, чтобы не было обсеров
 		public SquareMatrix(float a, float b, float c, float d)
 		{
-			Columns.First.X = a;
-			Columns.First.Y = b;
-			Columns.Second.X = c;
-			Columns.Second.Y = d;
+			Columns.First = new Vector2f(a, b);
+			Columns.Second = new Vector2f(c, d);
 		}
 
 		public SquareMatrix(float angle)
 		{
 			float cos = (float)Math.Cos(angle);
 			float sin = (float)Math.Sin(angle);
-			Columns.First.X = cos;
-			Columns.First.Y = sin;
-			Columns.Second.X = -sin;
-			Columns.Second.Y = cos;
+
+			Columns.First = new Vector2f(cos, sin);
+			Columns.Second = new Vector2f(-sin, cos);
 		}
 
+		#region Операторы
 		public static SquareMatrix operator +(SquareMatrix A, SquareMatrix B)
+			=> new SquareMatrix((A.FirstColumn + B.FirstColumn, A.SecondColumn + B.SecondColumn));
+
+		/// <summary>
+		/// Умножение квадратных матриц 2x2 методом Штрассена,
+		/// работает эфективнее чем стандратное умножение матриц
+		/// </summary>
+		public static SquareMatrix operator *(SquareMatrix A, SquareMatrix B)
 		{
-			SquareMatrix C = new SquareMatrix();
-			C.Set((A.FirstColumn + B.FirstColumn, A.SecondColumn + B.SecondColumn));
-			return C;
+			var alpha1 = (A.FirstColumn.X + A.SecondColumn.Y) * (B.FirstColumn.X + B.SecondColumn.X);
+			var alpha2 = (A.FirstColumn.Y + A.SecondColumn.Y) * B.FirstColumn.X;
+			var alpha3 = A.FirstColumn.X * (B.SecondColumn.X - B.SecondColumn.Y);
+			var alpha4 = A.SecondColumn.Y * (B.FirstColumn.Y - B.FirstColumn.X);
+			var alpha5 = (A.FirstColumn.X + A.SecondColumn.X) * B.SecondColumn.Y;
+			var alpha6 = (A.FirstColumn.Y - A.FirstColumn.X) * (B.FirstColumn.X + B.SecondColumn.X);
+			var alpha7 = (A.SecondColumn.X - A.SecondColumn.Y) * (B.FirstColumn.Y + B.SecondColumn.Y);
+
+			return new SquareMatrix
+				(
+					alpha1 + alpha4 - alpha5 + alpha7,
+					alpha2 + alpha4,
+					alpha3 + alpha5,
+					alpha1 + alpha3 - alpha2 + alpha6
+				);
 		}
+		#endregion
 
 		/// <summary>
 		/// Initialize this matrix using columns.
