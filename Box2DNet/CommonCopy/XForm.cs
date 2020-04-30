@@ -1,7 +1,5 @@
 ﻿using SFML.System;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Box2DNet.CommonCopy
 {
@@ -13,6 +11,8 @@ namespace Box2DNet.CommonCopy
 	{
 		public readonly Vector2f Position;
 		public readonly SquareMatrix Rotation;
+		public readonly Vector2f FirstColumnRotation => Rotation.FirstColumn;
+		public readonly Vector2f SecondColumnRotation => Rotation.SecondColumn;
 
 		public static readonly XForm Identity = new XForm(new Vector2f(0, 0), SquareMatrix.Identity);
 
@@ -25,39 +25,22 @@ namespace Box2DNet.CommonCopy
 			Rotation = rotation;
 		}
 
-		///// Calculate the angle that the rotation matrix represents.
 		/// <summary>
 		/// Calculate the angle that the rotation matrix represents.
 		/// </summary>
 		public float GetAngle()
-			=> (float) Math.Atan2(Rotation.FirstColumn.Y, Rotation.FirstColumn.X);
+			=> (float) Math.Atan2(FirstColumnRotation.Y, FirstColumnRotation.X);
 
-		///// Calculate the angle that the rotation matrix represents.
-		//public float GetAngle()
-		//{
-		//	return Math.Atan2(R.Col1.Y, R.Col1.X);
-		//}
+		public Vector2f TransformPoint(Vector2f vector)
+			=> Position + TransformDirection(vector);
 
-		//public Vector2 TransformDirection(Vector2 vector)
-		//{
-		//	return Math.Mul(R, vector);
-		//}
+		public Vector2f TransformDirection(Vector2f vector)
+			=> Rotation * vector;
 
-		//public Vector2 InverseTransformDirection(Vector2 vector)
-		//{
-		//	return Math.MulT(R, vector);
-		//}
+		public Vector2f InverseTransformPoint(Vector2f vector)
+			=> InverseTransformDirection(vector - Position);
 
-		//public Vector2 TransformPoint(Vector2 vector)
-		//{
-		//	return position + Math.Mul(R, vector);
-		//}
-
-		//public Vector2 InverseTransformPoint(Vector2 vector)
-		//{
-		//	return Math.MulT(R, vector - position);
-		//}
-
-
+		public Vector2f InverseTransformDirection(Vector2f vector)
+			=> Rotation.InverseMultiply(vector);
 	}
 }

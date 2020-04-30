@@ -1,4 +1,5 @@
-﻿using SFML.System;
+﻿using Box2DNet.CommonCopy.ExtensionMethods;
+using SFML.System;
 using System;
 using System.Numerics;
 
@@ -84,6 +85,16 @@ namespace Box2DNet.CommonCopy
 					alpha1 + alpha3 - alpha2 + alpha6
 				);
 		}
+
+		public static Vector2f operator *(SquareMatrix matrix, Vector2f vector)
+		{
+			var firstColumn = matrix.FirstColumn;
+			var secondColumn = matrix.SecondColumn;
+			var firstLine = new Vector2f(firstColumn.X, secondColumn.X);
+			var secondLine = new Vector2f(firstColumn.Y, secondColumn.Y);
+
+			return new Vector2f(firstLine.Dot(vector), secondLine.Dot(vector));
+		}
 		#endregion
 
 		/// <summary>
@@ -108,14 +119,14 @@ namespace Box2DNet.CommonCopy
 			Columns.Second.Y = cos;
 		}
 
+		public Vector2f InverseMultiply(Vector2f vector)
+			=> new Vector2f(FirstColumn.Dot(vector), SecondColumn.Dot(vector));
+
 		/// <summary>
 		/// Extract the angle from this matrix (assumed to be a rotation matrix).
 		/// </summary>
 		public float GetAngle()
 			=> (float)Math.Atan2(FirstColumn.Y, FirstColumn.X);
-
-		public Vector2f Multiply(Vector2f vector)
-			=> new Vector2f(FirstColumn.X * vector.Y + SecondColumn.X * vector.Y, FirstColumn.Y * vector.X + SecondColumn.Y * vector.Y);
 
 		/// <summary>
 		/// Compute the inverse of this matrix, such that inv(A) * A = identity.
