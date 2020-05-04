@@ -52,8 +52,8 @@ namespace Box2DNet.CommonCopy
 
 		public SquareMatrix(float angle)
 		{
-			float cos = (float)Math.Cos(angle);
-			float sin = (float)Math.Sin(angle);
+			float cos = (float)System.Math.Cos(angle);
+			float sin = (float)System.Math.Sin(angle);
 
 			Columns.First = new Vector2f(cos, sin);
 			Columns.Second = new Vector2f(-sin, cos);
@@ -111,8 +111,8 @@ namespace Box2DNet.CommonCopy
 		/// </summary>
 		public void Set(float angle)
 		{
-			float cos = (float)Math.Cos(angle);
-			float sin = (float)Math.Sin(angle);
+			float cos = (float)System.Math.Cos(angle);
+			float sin = (float)System.Math.Sin(angle);
 			Columns.First.X = cos;
 			Columns.First.Y = sin;
 			Columns.Second.X = -sin;
@@ -126,7 +126,7 @@ namespace Box2DNet.CommonCopy
 		/// Extract the angle from this matrix (assumed to be a rotation matrix).
 		/// </summary>
 		public float GetAngle()
-			=> (float)Math.Atan2(FirstColumn.Y, FirstColumn.X);
+			=> (float)System.Math.Atan2(FirstColumn.Y, FirstColumn.X);
 
 		/// <summary>
 		/// Compute the inverse of this matrix, such that inv(A) * A = identity.

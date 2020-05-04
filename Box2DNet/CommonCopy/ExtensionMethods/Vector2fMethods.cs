@@ -28,7 +28,7 @@ namespace Box2DNet.CommonCopy.ExtensionMethods
 		///  Get the length of this vector (the norm).
 		/// </summary>
 		public static float GetLength(this Vector2f vector)
-			=> (float)Math.Sqrt(GetLengthSquared(vector));
+			=> (float)System.Math.Sqrt(GetLengthSquared(vector));
 
 		/// <summary>
 		/// Get the length squared. For performance, use this instead of
@@ -66,6 +66,9 @@ namespace Box2DNet.CommonCopy.ExtensionMethods
 		public static Vector2f Cross(this Vector2f vector, float number)
 			=> new Vector2f(number * vector.Y, -number * vector.X);
 
+		public static Vector2f CrossScalarPreMultiply(this Vector2f vector, float number)
+			=> Cross(vector, -number);
+
 		public static float Distance(this Vector2f first, Vector2f second)
 			=> (first - second).GetLength();
 
@@ -74,5 +77,14 @@ namespace Box2DNet.CommonCopy.ExtensionMethods
 			var difVector = first - second;
 			return difVector.Dot(difVector);
 		}
+
+		public static Vector2f Abs(this Vector2f vector)
+			=> new Vector2f(System.Math.Abs(vector.X), System.Math.Abs(vector.Y));
+
+		public static Vector2f Min(Vector2f first, Vector2f second)
+			=> new Vector2f(System.Math.Min(first.X, second.X), System.Math.Min(first.Y, second.Y));
+
+		public static Vector2f Max(Vector2f first, Vector2f second)
+			=> new Vector2f(System.Math.Max(first.X, second.X), System.Math.Max(first.Y, second.Y));
 	}
 }
